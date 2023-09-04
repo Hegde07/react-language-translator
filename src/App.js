@@ -1,23 +1,50 @@
-import logo from './logo.svg';
+
+import { useEffect, useState } from 'react';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+  const [to,setTo]=useState('');
+  const [from,setFrom]=useState('')
+  const [input,setInput]=useState('')
+  const [output,setOutput]=useState('');
+
+
+  useEffect(()=>{
+    axios.get('https://libretranslate.com/languages',{
+      headers:{'accept':'application/json'}
+    }).then(res=>console.log(res))
+  },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='selector'>
+      From:
+     <select>
+      <option value='1'>1</option>
+      <option value='2'>2</option>
+      <option value='3'>3</option>
+      <option value='4'>4</option>
+      <option value='5'>5</option>
+     </select>
+     To:
+     <select>
+      <option value='1'>1</option>
+      <option value='2'>2</option>
+      <option value='3'>3</option>
+      <option value='4'>4</option>
+      <option value='5'>5</option>
+     </select>
+     </div>
+     <div className='textarea1'>
+      <textarea cols='50' rows='8'></textarea>
+     </div>
+     <div className='textarea2'>
+      <textarea cols='50' rows='8'></textarea>
+     </div>
+     <div>
+      <button>Translate</button>
+     </div>
     </div>
   );
 }
